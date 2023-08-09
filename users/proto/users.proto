@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+package services.user.v1;
+
+message Users{
+    string id = 1;
+    string name = 2;
+    string surname = 3;
+    string email = 4;
+    string password = 5;
+    int32 type = 6;
+}
+
+message getAllIput{
+    int32 page = 1;
+    int32 pageSize = 2;
+}
+
+message getAllOutput{
+    repeated Users users = 1;
+}
+
+message getByIdInput{
+    string id = 1;
+}
+
+message getByIdOutput{
+    Users user = 1;
+}
+
+service UserService{
+    rpc getAll(getAllIput) returns (getAllOutput);
+    rpc getById(getByIdInput) returns (getByIdOutput);
+}
+
